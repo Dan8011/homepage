@@ -1,19 +1,24 @@
-/* Global */
+/* ============================
+   Globální nastavení
+============================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Segoe UI", Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
 }
 
 body {
     background: #f5f7fb;
     color: #333;
+    scroll-behavior: smooth; /* Smooth scroll při kliknutí na odkazy */
 }
 
-/* Header */
+/* ============================
+   Header
+============================ */
 header {
-    background: #ffffff;
+    background: #fff;
     padding: 20px 50px;
     display: flex;
     justify-content: space-between;
@@ -21,39 +26,35 @@ header {
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     position: sticky;
     top: 0;
-    z-index: 10;
-}
-
-header .logo {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #003a8c;
+    z-index: 100;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 10px; 
+    gap: 10px;
 }
 
 .logo img {
-    height: 100px;    
+    height: 80px;
     width: auto;
 }
-
 
 header nav a {
     margin-left: 25px;
     color: #003a8c;
     text-decoration: none;
     font-weight: 500;
+    transition: 0.3s;
 }
 
 header nav a:hover {
-    color: #006eff;
+    color: #ff6600; /* Oranžové zvýraznění při hoveru */
 }
 
-/* Hero Section */
+/* ============================
+   Hero sekce
+============================ */
 .hero {
     height: 65vh;
     background: url("https://www.plzensky-kraj.cz/Framework/Document.ashx?ID=149576&Action=view") center/cover no-repeat;
@@ -63,7 +64,6 @@ header nav a:hover {
     align-items: center;
 }
 
-/* slight fade for text clarity */
 .hero::after {
     content: "";
     position: absolute;
@@ -78,6 +78,7 @@ header nav a:hover {
     border-radius: 16px;
     text-align: center;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    animation: fadeUp 1s ease forwards; /* Animace při načtení */
 }
 
 .hero-box h1 {
@@ -90,7 +91,9 @@ header nav a:hover {
     font-size: 1.2rem;
 }
 
-/* Sections */
+/* ============================
+   Sekce
+============================ */
 .section {
     padding: 80px 60px;
     text-align: center;
@@ -102,7 +105,9 @@ header nav a:hover {
     margin-bottom: 25px;
 }
 
-/* Cards (obory) */
+/* ============================
+   Karty oborů
+============================ */
 .cards {
     display: flex;
     justify-content: center;
@@ -111,12 +116,15 @@ header nav a:hover {
 }
 
 .card {
-    background: white;
+    background: #fff;
     padding: 25px 40px;
     border-radius: 12px;
     box-shadow: 0 3px 12px rgba(0,0,0,0.1);
     font-weight: 500;
-    transition: 0.25s;
+    transition: 0.3s, transform 0.5s;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease forwards;
 }
 
 .card:hover {
@@ -124,27 +132,71 @@ header nav a:hover {
     box-shadow: 0 6px 20px rgba(0,0,0,0.18);
 }
 
-/* News */
+/* ============================
+   Novinky
+============================ */
 .news-list {
     max-width: 650px;
     margin: auto;
 }
 
 .news-item {
-    background: white;
+    background: #fff;
     padding: 20px;
     margin: 15px 0;
     border-left: 4px solid #003a8c;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
     text-align: left;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease forwards;
+    transition: transform 0.3s;
 }
 
-/* Footer */
+.news-item:hover {
+    transform: translateY(-4px);
+}
+
+/* ============================
+   Footer
+============================ */
 footer {
     background: #003a8c;
-    color: white;
+    color: #fff;
     text-align: center;
     padding: 40px 0;
     margin-top: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 1s ease forwards;
+}
+
+/* ============================
+   Animace fade-up
+============================ */
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================
+   Responsivita
+============================ */
+@media(max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .hero-box {
+        padding: 30px 20px;
+    }
+
+    .cards {
+        flex-direction: column;
+        gap: 15px;
+    }
 }
